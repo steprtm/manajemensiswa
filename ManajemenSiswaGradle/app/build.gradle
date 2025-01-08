@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.0.0'  // Tambahkan plugin Shadow
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'mysql:mysql-connector-java:8.0.33'  // Menyertakan MySQL Connector
+}
+
+application {
+    mainClass = 'ManajemenSiswaGradle.App'  // Pastikan ini adalah kelas utama Anda
+}
+
+// Konfigurasi plugin shadow untuk membuat JAR yang dibundel dengan dependensi
+shadowJar {
+    archiveBaseName = 'app'  // Nama JAR
+    archiveVersion = '1.0'  // Versi JAR
+    manifest {
+        attributes(
+            'Main-Class': 'ManajemenSiswaGradle.App'  // Pastikan ini sesuai dengan kelas utama Anda
+        )
+    }
+}
